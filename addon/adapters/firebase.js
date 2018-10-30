@@ -835,6 +835,9 @@ export default DS.Adapter.extend(Waitable, {
             const relationshipTypeClass = store.modelFor(relationship.type);
             for (let id in relationshipPayload) {
               let obj = relationshipPayload[id];
+              if (typeof obj == "boolean") {
+                continue;
+              }
               obj.id = id;
               this._updateRecordCacheForType(relationshipTypeClass, obj, store);
             }
